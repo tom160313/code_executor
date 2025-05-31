@@ -1,0 +1,17 @@
+services:
+  executor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app 
+      - /tmp:/tmp
+      - ./static:/app/static
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: False
+    # tmpfs: は削除
